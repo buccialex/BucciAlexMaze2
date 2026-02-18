@@ -10,12 +10,28 @@ import javax.swing.table.DefaultTableModel;
  * @author Bux
  */
 public class MuoviMostro implements Runnable{
+    /**
+     * attributi:
+     * mostro = oggetto Mostro
+     * player = oggetto Player
+     * lab = labirinto
+     * model = tabella (neccessaria come attributo per far si che possa vedere l'aggiornamento della tabella)
+     * ritardoIniziale = valore di ritardo di partenza rispetto al player
+     */
     private Mostro mostro;
     private Player player;  
     private Labirinto lab;
     private DefaultTableModel model;
     private int ritardoIniziale;
     
+    /**
+     * costruttore
+     * @param mostro mostro
+     * @param player player
+     * @param lab labirinto
+     * @param model tabella
+     * @param ritardoIniziale ritardo di partenza
+     */
     public MuoviMostro(Mostro mostro, Player player, Labirinto lab, DefaultTableModel model, int ritardoIniziale) {
         this.mostro = mostro;
         this.player = player;  
@@ -24,6 +40,9 @@ public class MuoviMostro implements Runnable{
         this.ritardoIniziale = ritardoIniziale;
     }
     
+    /**
+     * override del metodo run del thread
+     */
     @Override
         public void run() {
             try {

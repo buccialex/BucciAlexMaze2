@@ -11,11 +11,25 @@ import javax.swing.table.DefaultTableModel;
  * @author Bux
  */
 public class MuoviPlayer implements Runnable{
+    /**
+     * attributi:
+     * player = player
+     * lab = labirinto
+     * model = tabella
+     * btnMuovi = bottone che avvia il movimento
+     */
     private Player player;
     private Labirinto lab;
     private DefaultTableModel model;
     private JButton btnMuovi;
     
+    /**
+     * costruttore
+     * @param player player
+     * @param lab labirinto
+     * @param model tabella
+     * @param btnMuovi bottone che avvia l'esecuzione
+     */
     public MuoviPlayer(Player player, Labirinto lab, DefaultTableModel model, JButton btnMuovi) {
         this.player = player;
         this.lab = lab;
@@ -23,6 +37,9 @@ public class MuoviPlayer implements Runnable{
         this.btnMuovi = btnMuovi;
     }
     
+    /**
+     * override del metodo run che consente di eseguire le istruzioni con il thread
+     */
     @Override
     public void run() {
         int n = lab.getMappa().length;

@@ -12,6 +12,8 @@ public abstract class OggettoMobile {
     /**
      * attributi:
      * nome = nome dell'oggetto
+     * x = coordinata x
+     * y = coordinata y
      */
     protected String nome;
     protected int x;
@@ -29,26 +31,50 @@ public abstract class OggettoMobile {
      */
     public abstract void muovi(Labirinto l);
 
+    /**
+     * getter nome
+     * @return nome
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * setter nome
+     * @param nome nuovo nome 
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     * getter x
+     * @return x
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * setter x
+     * @param x nuova x
+     */
     public void setX(int x) {
         this.x = x;
     }
 
+    /**
+     * getter y
+     * @return y
+     */
     public int getY() {
         return y;
     }
 
+    /**
+     * setter y
+     * @param y nuova y 
+     */
     public void setY(int y) {
         this.y = y;
     }
