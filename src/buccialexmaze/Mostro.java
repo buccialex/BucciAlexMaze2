@@ -14,7 +14,7 @@ public class Mostro extends OggettoMobile{
      * attributi:
      * deviazioneProb: la probabilità che il mostro si inizi a muovere randomicamente
      */
-    private static final int deviazioneProb = 75;
+    private final int deviazioneProb = 30;
     
     /**
      * costruttore di mostro
@@ -48,11 +48,22 @@ public class Mostro extends OggettoMobile{
         int[] dx = {-1, 1, 0, 0};
         int[] dy = {0, 0, -1, 1};
 
-        // scegli randomicamente in base alla probabilità se seguire il player o se muoversi casualmente
         if (rnd.nextInt(100) < deviazioneProb) {
             muoviCasuale(maze, n, dx, dy, prev);
         } else {
-            if (!muoviVersoPlayer(maze, n, dx, dy, player, prev)) {
+            boolean[][] visitato = new boolean[n][n];
+            List<int[]> percorso = new ArrayList<>();
+
+            // cerca ricorsivamente il percorso verso il player
+            cercaPercorso(maze, x, y, player.getX(), player.getY(), visitato, percorso);
+
+            if (percorso.size() > 1) {
+                prev[0] = x;
+                prev[1] = y;
+                // il primo elemento è la posizione attuale, il secondo è il prossimo passo
+                x = percorso.get(1)[0];
+                y = percorso.get(1)[1];
+            } else {
                 muoviCasuale(maze, n, dx, dy, prev);
             }
         }
@@ -68,49 +79,41 @@ public class Mostro extends OggettoMobile{
      * @param prev coordinate della cella di provenienza
      * @return  se il mostro si può muovere verso il player
      */
-    private boolean muoviVersoPlayer(int[][] maze, int n, int[] dx, int[] dy, Player player, int[] prev) {
-        int bestX = -1;
-        int bestY = -1;
-        double bestDist = Double.MAX_VALUE;
+    
+    private boolean cercaPercorso(int[][] maze, int cx, int cy, int endX, int endY,
+                                   boolean[][] visitato, List<int[]> percorso) {
+        int n = maze.length;
+
+        // caso base: obiettivo raggiunto
+        if (cx == endX && cy == endY) {
+            percorso.add(new int[]{cx, cy});
+            return true;
+        }
+
+        visitato[cx][cy] = true;
+        percorso.add(new int[]{cx, cy});
+
+        int[] dx = {-1, 1, 0, 0};
+        int[] dy = {0, 0, -1, 1};
 
         for (int i = 0; i < 4; i++) {
-            int nextX = x + dx[i];
-            int nextY = y + dy[i];
+            int nx = cx + dx[i];
+            int ny = cy + dy[i];
 
-            if (nextX == prev[0] && nextY == prev[1]) continue; // salta precedente
-
-            if (nextX >= 0 && nextX < n && nextY >= 0 && nextY < n
-                    && maze[nextX][nextY] != 1) {
-                double dist = distanza(nextX, nextY, player.getX(), player.getY());
-                if (dist < bestDist) {
-                    bestDist = dist;
-                    bestX = nextX;
-                    bestY = nextY;
+            if (nx >= 0 && nx < n && ny >= 0 && ny < n
+                    && maze[nx][ny] != 1 && !visitato[nx][ny]) {
+                if (cercaPercorso(maze, nx, ny, endX, endY, visitato, percorso)) {
+                    return true;
                 }
             }
         }
 
-        if (bestX != -1) {
-            prev[0] = x;  // ← aggiorna l'array prima di spostarsi
-            prev[1] = y;
-            x = bestX;
-            y = bestY;
-            return true;
-        }
-
-        prev[0] = -1;  // vicolo cieco, resetta
-        prev[1] = -1;
+        // vicolo cieco: rimuovi questa cella dal percorso (backtracking)
+        percorso.remove(percorso.size() - 1);
         return false;
     }
-
-    /**
-     * metodo per muovere il mostro in modo casuale
-     * @param maze labirinto
-     * @param n dimensione del labirinto
-     * @param dx valori di x possibili
-     * @param dy valori di y possibili
-     * @param prev coordinate cella di provenienza
-     */
+    
+    
     private void muoviCasuale(int[][] maze, int n, int[] dx, int[] dy, int[] prev) {
         Random rnd = new Random();
         int tentativi = 0;
@@ -134,21 +137,8 @@ public class Mostro extends OggettoMobile{
             }
             tentativi++;
         }
-
         prev[0] = -1;
         prev[1] = -1;
-    }
-
-    /**
-     * metodo per calcolare la distanza del mostro dal player in linea d'area
-     * @param x1 x del player
-     * @param y1 y del player
-     * @param x2 x del mostro
-     * @param y2 y del mostro
-     * @return 
-     */
-    private double distanza(int x1, int y1, int x2, int y2) {
-        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
     
     

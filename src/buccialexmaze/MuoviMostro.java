@@ -67,7 +67,7 @@ public class MuoviMostro implements Runnable{
             });
 
         try {
-            Thread.sleep(20);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             return;

@@ -35,6 +35,8 @@ public class Labirinto {
      */
     
     private int[][] popolaLabirinto(){
+        Mela m = new Mela();
+        int nMele = 0;
         int n = misure;
         if (n % 2 == 0) n++;
         

@@ -56,7 +56,7 @@ public class MuoviPlayer implements Runnable{
             });
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(120);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 return;
