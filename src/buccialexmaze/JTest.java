@@ -169,6 +169,9 @@ public class JTest extends javax.swing.JFrame {
                         case 5:
                             c.setBackground(Color.ORANGE);
                             break;
+                        case 8:
+                            c.setBackground(Color.GREEN);
+                                break;
                         default:
                             c.setBackground(Color.WHITE); 
                             break;

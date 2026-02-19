@@ -47,11 +47,11 @@ public class Player extends OggettoMobile{
             int nextY = y + dy[i];
             
             if (nextX >= 0 && nextX < n && nextY >= 0 && nextY < n && 
-                maze[nextX][nextY] == 2) {
-                x = nextX;
-                y = nextY;
-                return;
-            }
+                    (maze[nextX][nextY] == 2 || maze[nextX][nextY] == 8)) {
+                     x = nextX;
+                     y = nextY;
+                     return;
+                }
         }
         
         for (int i = 0; i < 4; i++) {

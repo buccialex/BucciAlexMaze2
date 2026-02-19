@@ -35,6 +35,7 @@ public class Labirinto {
      */
     
     private int[][] popolaLabirinto(){
+        Random rnd = new Random();
         Mela m = new Mela();
         int nMele = 0;
         int n = misure;
@@ -84,9 +85,18 @@ public class Labirinto {
             while (!(x == start_x && y == start_y)) {
                 this.mappa[x][y] = 2;
                 int temp_x = x;
+                int temp_y = y;
                 x = parent_x[temp_x][y];
                 y = parent_y[temp_x][y];
-            }
+                if (nMele < 4 && rnd.nextInt(100) > 95) {
+        this.mappa[temp_x][temp_y] = 8; // sulla cella già processata
+        nMele++;
+    } else {
+        this.mappa[temp_x][temp_y] = 2;
+    }
+                    }
+                
+            
             this.mappa[start_x][start_y] = 2; // Marca anche il punto di partenza
         }
         
