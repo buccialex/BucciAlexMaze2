@@ -23,6 +23,7 @@ public class MuoviMostro implements Runnable{
     private Labirinto lab;
     private DefaultTableModel model;
     private int ritardoIniziale;
+    private volatile boolean[] gameOver;
     
     /**
      * costruttore
@@ -32,12 +33,13 @@ public class MuoviMostro implements Runnable{
      * @param model tabella
      * @param ritardoIniziale ritardo di partenza
      */
-    public MuoviMostro(Mostro mostro, Player player, Labirinto lab, DefaultTableModel model, int ritardoIniziale) {
+    public MuoviMostro(Mostro mostro, Player player, Labirinto lab, DefaultTableModel model, int ritardoIniziale, boolean[] gameOver) {
         this.mostro = mostro;
         this.player = player;  
         this.lab = lab;
         this.model = model;
         this.ritardoIniziale = ritardoIniziale;
+        this.gameOver = gameOver;
     }
     
     /**
@@ -61,13 +63,24 @@ public class MuoviMostro implements Runnable{
 
             mostro.muovi(lab, player, prev);  // ← passa l'array
 
+            
+            // controlla se il mostro ha raggiunto il player
+            if (mostro.getX() == player.getX() && mostro.getY() == player.getY()) {
+                gameOver[0] = true;
+                SwingUtilities.invokeLater(() -> {
+                    model.setValueAt(5, mostro.getX(), mostro.getY());
+                    Thread.currentThread().interrupt();
+                });
+                return;
+            }
+            
             SwingUtilities.invokeLater(() -> {
                 model.setValueAt(0, oldX, oldY);
                 model.setValueAt(5, mostro.getX(), mostro.getY());
             });
 
         try {
-            Thread.sleep(100);
+            Thread.sleep(80);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             return;

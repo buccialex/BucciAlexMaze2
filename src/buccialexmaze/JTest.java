@@ -204,11 +204,11 @@ public class JTest extends javax.swing.JFrame {
         if (lab != null && player != null) {
         DefaultTableModel model = (DefaultTableModel) tabella.getModel();
         
-        MuoviPlayer runner = new MuoviPlayer(player, lab, model, btnMuovi);
+        MuoviPlayer runner = new MuoviPlayer(player, lab, model, btnMuovi, gameOver);
         Thread thread = new Thread(runner);
         thread.start();
         
-        MuoviMostro runnerMostro = new MuoviMostro(mostro, player, lab, model, 2000);;
+        MuoviMostro runnerMostro = new MuoviMostro(mostro, player, lab, model, 2000, gameOver);;
         Thread threadMostro = new Thread(runnerMostro);
         threadMostro.start();
     }
@@ -241,6 +241,7 @@ public class JTest extends javax.swing.JFrame {
         
     }
 
+    private boolean[] gameOver = {false}; 
     private Labirinto lab;
     private Player player;  
     private Mostro mostro;

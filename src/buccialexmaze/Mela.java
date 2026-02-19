@@ -15,4 +15,12 @@ public class Mela {
         Random rnd = new Random();
         this.bonus = rnd.nextInt(-20, 21);
     }
+
+    public int getBonus() {
+        return bonus;
+    }
+
+   
+    
+    
 }

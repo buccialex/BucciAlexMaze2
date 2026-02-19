@@ -15,11 +15,13 @@ public class Labirinto {
      * coordinata x dell'entrata
      * coordinata y dell'entrata
      * mappa = matrice del labirinto
+     * mela = array delle mele contenute
      */
     private int misure;
     private int xEntrata;
     private int yEntrata;
     private int[][] mappa;
+
     /**
      * costruttore di labirinto
      */
@@ -36,7 +38,6 @@ public class Labirinto {
     
     private int[][] popolaLabirinto(){
         Random rnd = new Random();
-        Mela m = new Mela();
         int nMele = 0;
         int n = misure;
         if (n % 2 == 0) n++;
@@ -88,13 +89,14 @@ public class Labirinto {
                 int temp_y = y;
                 x = parent_x[temp_x][y];
                 y = parent_y[temp_x][y];
-                if (nMele < 4 && rnd.nextInt(100) > 95) {
-        this.mappa[temp_x][temp_y] = 8; // sulla cella già processata
-        nMele++;
-    } else {
-        this.mappa[temp_x][temp_y] = 2;
-    }
+                if (nMele < 4 && rnd.nextInt(100) > 90) {
+                    this.mappa[temp_x][temp_y] = 8; // sulla cella già processata
+                    nMele++;
+                    
+                } else {
+                    this.mappa[temp_x][temp_y] = 2;
                     }
+            }
                 
             
             this.mappa[start_x][start_y] = 2; // Marca anche il punto di partenza
