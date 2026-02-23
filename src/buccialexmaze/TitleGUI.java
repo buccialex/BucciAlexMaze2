@@ -33,7 +33,7 @@ public class TitleGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnGioca = new javax.swing.JButton();
-        btnConfiguraGiocatore = new javax.swing.JButton();
+        btnConfiguraPartita = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,9 +52,9 @@ public class TitleGUI extends javax.swing.JFrame {
         btnGioca.setText("Gioca");
         jPanel2.add(btnGioca);
 
-        btnConfiguraGiocatore.setBackground(new java.awt.Color(255, 255, 255));
-        btnConfiguraGiocatore.setText("Configura giocatore");
-        jPanel2.add(btnConfiguraGiocatore);
+        btnConfiguraPartita.setBackground(new java.awt.Color(255, 255, 255));
+        btnConfiguraPartita.setText("Configura partita");
+        jPanel2.add(btnConfiguraPartita);
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -89,7 +89,7 @@ public class TitleGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfiguraGiocatore;
+    private javax.swing.JButton btnConfiguraPartita;
     private javax.swing.JButton btnGioca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
