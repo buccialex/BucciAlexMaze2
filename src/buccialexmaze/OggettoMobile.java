@@ -25,11 +25,7 @@ public abstract class OggettoMobile {
     public OggettoMobile(String nome){
         this.nome = nome;
     }
-    /**
-     * metodo per muovere l'oggetto (da implementare nelle sottoclassi)
-     * @param l labirinto
-     */
-    public abstract void muovi(Labirinto l);
+    
 
     /**
      * getter nome

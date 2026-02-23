@@ -24,15 +24,7 @@ public class Mostro extends OggettoMobile{
         super(nome);
     }
     
-    /**
-     * metodo muovi da implementare per rendere possibile l'ereditarietà(lasciato vuoto dato che il mostro usa un algoritmo di movimento che richiede più parametri)
-     * @param labirinto labirinto
-     */
-    @Override
-    public void muovi(Labirinto labirinto){
-        
-        
-    }
+   
     
    
     /**
@@ -113,7 +105,14 @@ public class Mostro extends OggettoMobile{
         return false;
     }
     
-    
+    /**
+     * metodo per muovere il mostro in modo casuale
+     * @param maze labirinto
+     * @param n misura del labirinto
+     * @param dx possibili x
+     * @param dy possibili y
+     * @param prev coordinate di provenienza
+     */
     private void muoviCasuale(int[][] maze, int n, int[] dx, int[] dy, int[] prev) {
         Random rnd = new Random();
         int tentativi = 0;

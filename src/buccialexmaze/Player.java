@@ -10,6 +10,10 @@ package buccialexmaze;
  */
 public class Player extends OggettoMobile {
 
+    /**
+     * attributi:
+     * velocita = valore della velocità del player (neccessaria per modificarla quando prende un oggetto)
+     */
     private int velocita = 120;
 
     /**
@@ -27,7 +31,7 @@ public class Player extends OggettoMobile {
      *
      * @param labirinto l'oggetto Labirinto su cui muoversi
      */
-    @Override
+    
     public void muovi(Labirinto labirinto) {
         if (this.x == 0 && this.y == 0) {
             this.x = labirinto.getxEntrata();
@@ -77,10 +81,18 @@ public class Player extends OggettoMobile {
         }
     }
 
+    /**
+     * getter di velocita
+     * @return valore della velocita
+     */
     public int getVelocita() {
         return velocita;
     }
 
+    /**
+     * setter di velocita
+     * @param velocita velocita da impostare
+     */
     public void setVelocita(int velocita) {
         this.velocita = velocita;
     }

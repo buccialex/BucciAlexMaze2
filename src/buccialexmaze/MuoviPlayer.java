@@ -31,6 +31,7 @@ public class MuoviPlayer implements Runnable {
      * @param lab labirinto
      * @param model tabella
      * @param btnMuovi bottone che avvia l'esecuzione
+     * @param gameOver variabile che è "in sintonia" con l'altro thread per capire quando fermare i thread
      */
     public MuoviPlayer(Player player, Labirinto lab, DefaultTableModel model, JButton btnMuovi, boolean[] gameOver) {
         this.player = player;
