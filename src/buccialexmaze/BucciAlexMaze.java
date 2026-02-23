@@ -14,7 +14,7 @@ public class BucciAlexMaze {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JTest f = new JTest();
+        TitleGUI f = new TitleGUI();
         f.setVisible(true);
     }
     
