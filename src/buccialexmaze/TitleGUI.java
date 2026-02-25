@@ -18,6 +18,7 @@ public class TitleGUI extends javax.swing.JFrame {
     public TitleGUI() {
         initComponents();
         this.setTitle("Maze - Bucci Alex");
+        
     }
 
     /**
@@ -46,7 +47,7 @@ public class TitleGUI extends javax.swing.JFrame {
         jLabel1.setText("Maze");
         jPanel1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setLayout(new java.awt.GridLayout());
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         btnGioca.setBackground(new java.awt.Color(255, 255, 255));
         btnGioca.setText("Gioca");
@@ -54,6 +55,11 @@ public class TitleGUI extends javax.swing.JFrame {
 
         btnConfiguraPartita.setBackground(new java.awt.Color(255, 255, 255));
         btnConfiguraPartita.setText("Configura partita");
+        btnConfiguraPartita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfiguraPartitaActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnConfiguraPartita);
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -62,6 +68,11 @@ public class TitleGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConfiguraPartitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraPartitaActionPerformed
+        CreazionePlayerGUI f = new CreazionePlayerGUI();
+        f.setVisible(true);
+    }//GEN-LAST:event_btnConfiguraPartitaActionPerformed
 
     /**
      * @param args the command line arguments
