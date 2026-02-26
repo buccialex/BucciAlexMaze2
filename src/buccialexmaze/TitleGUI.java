@@ -51,6 +51,11 @@ public class TitleGUI extends javax.swing.JFrame {
 
         btnGioca.setBackground(new java.awt.Color(255, 255, 255));
         btnGioca.setText("Gioca");
+        btnGioca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGiocaActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnGioca);
 
         btnConfiguraPartita.setBackground(new java.awt.Color(255, 255, 255));
@@ -73,6 +78,13 @@ public class TitleGUI extends javax.swing.JFrame {
         CreazionePlayerGUI f = new CreazionePlayerGUI();
         f.setVisible(true);
     }//GEN-LAST:event_btnConfiguraPartitaActionPerformed
+
+    private void btnGiocaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiocaActionPerformed
+        GameGUI g = new GameGUI();
+        g.setVisible(true);
+        this.setVisible(false);
+        g.setLblMele("eldego");
+    }//GEN-LAST:event_btnGiocaActionPerformed
 
     /**
      * @param args the command line arguments

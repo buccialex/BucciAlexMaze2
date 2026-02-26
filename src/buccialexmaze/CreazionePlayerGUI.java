@@ -124,10 +124,13 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         jPanel6.add(jLabel2, gridBagConstraints);
+
+        txtNomePlayer.setBackground(new java.awt.Color(51, 51, 51));
+        txtNomePlayer.setForeground(new java.awt.Color(255, 255, 255));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(txtNomePlayer, gridBagConstraints);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,21 +140,24 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         jPanel6.add(jLabel3, gridBagConstraints);
 
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton1.setBackground(new java.awt.Color(102, 0, 0));
+        jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton1.setText("1");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         jPanel6.add(jRadioButton1, gridBagConstraints);
 
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton2.setBackground(new java.awt.Color(102, 0, 0));
+        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton2.setText("2");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         jPanel6.add(jRadioButton2, gridBagConstraints);
 
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton3.setBackground(new java.awt.Color(102, 0, 0));
+        jRadioButton3.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton3.setText("3");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
@@ -164,9 +170,13 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         jPanel6.add(jLabel5, gridBagConstraints);
+
+        jTextField1.setBackground(new java.awt.Color(51, 51, 51));
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(jTextField1, gridBagConstraints);
 
         jPanel2.add(jPanel6, new java.awt.GridBagConstraints());
