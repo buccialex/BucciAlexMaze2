@@ -17,6 +17,7 @@ public class TitleGUI extends javax.swing.JFrame {
      */
     public TitleGUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.setTitle("Maze - Bucci Alex");
         
     }
@@ -83,7 +84,7 @@ public class TitleGUI extends javax.swing.JFrame {
         GameGUI g = new GameGUI();
         g.setVisible(true);
         this.setVisible(false);
-        g.setLblMele("eldego");
+        
     }//GEN-LAST:event_btnGiocaActionPerformed
 
     /**

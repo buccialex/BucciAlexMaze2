@@ -24,8 +24,25 @@ public class GameGUI extends javax.swing.JFrame {
      * Creates new form GameGUI
      */
     public GameGUI() {
+        // configurazione form
         this.setLocationRelativeTo(null);
         initComponents();
+        this.setTitle("Gioco in corso");
+        
+        
+
+// popolazione tabella
+
+        preparaTabella();
+       
+    }
+
+    public void setLblMele(String testo) {
+        this.lblMele.setText(testo);
+    }
+    
+    
+    public void preparaTabella(){
         lab = new Labirinto();
         int[][] matriceInteri = lab.getMappa();
         player = new Player("Franco"); 
@@ -72,22 +89,22 @@ public class GameGUI extends javax.swing.JFrame {
                 if (value instanceof Integer) {
                     int val = (Integer) value;
                     switch (val) {
-                        case 1: 
-                            c.setBackground(Color.BLACK); 
+                        case 1: // MURI
+                            c.setBackground(Color.RED); 
                             break;
                         
-                        case 3:
-                            c.setBackground(Color.RED);
+                        case 3: // PLAYER
+                            c.setBackground(Color.WHITE);
                             break;
                         
-                        case 5:
+                        case 5: // MOSTRO
                             c.setBackground(Color.ORANGE);
                             break;
-                        case 8:
+                        case 8: // MELE
                             c.setBackground(Color.GREEN);
                                 break;
                         default:
-                            c.setBackground(Color.WHITE); 
+                            c.setBackground(Color.BLACK); 
                             break;
                         
                     }
@@ -109,16 +126,7 @@ public class GameGUI extends javax.swing.JFrame {
         // Rimuoviamo la griglia grigia di default
         tabella.setShowGrid(false);
         tabella.setIntercellSpacing(new Dimension(0, 0));
-        
-       
     }
-
-    public void setLblMele(String testo) {
-        this.lblMele.setText(testo);
-    }
-    
-    
-    
     
 
     /**
@@ -139,7 +147,7 @@ public class GameGUI extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblMele = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblNomePlayer = new javax.swing.JLabel();
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -157,15 +165,19 @@ public class GameGUI extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(897, 621));
+        setMinimumSize(new java.awt.Dimension(897, 685));
+        setPreferredSize(new java.awt.Dimension(897, 685));
         setResizable(false);
-        setSize(new java.awt.Dimension(897, 621));
+        setSize(new java.awt.Dimension(897, 685));
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 0));
         jPanel2.setLayout(null);
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
+        tabella.setBackground(new java.awt.Color(0, 0, 0));
+        tabella.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tabella.setForeground(new java.awt.Color(0, 0, 0));
         tabella.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -183,21 +195,17 @@ public class GameGUI extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(10, 10, 640, 580);
+        jPanel3.setBounds(0, 0, 640, 650);
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setLayout(new java.awt.BorderLayout());
@@ -219,9 +227,9 @@ public class GameGUI extends javax.swing.JFrame {
         jPanel2.add(lblMele);
         lblMele.setBounds(670, 40, 210, 50);
 
-        jLabel3.setText("PLACEHOLDERNOME");
-        jPanel2.add(jLabel3);
-        jLabel3.setBounds(680, 300, 190, 16);
+        lblNomePlayer.setText("PLACEHOLDERNOME");
+        jPanel2.add(lblNomePlayer);
+        lblNomePlayer.setBounds(680, 300, 190, 16);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -260,13 +268,13 @@ public class GameGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMele;
+    private javax.swing.JLabel lblNomePlayer;
     private javax.swing.JTable tabella;
     // End of variables declaration//GEN-END:variables
 }

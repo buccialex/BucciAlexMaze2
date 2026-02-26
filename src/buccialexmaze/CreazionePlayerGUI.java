@@ -9,7 +9,7 @@ package buccialexmaze;
  * @author bucci.alex
  */
 public class CreazionePlayerGUI extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CreazionePlayerGUI.class.getName());
 
     /**
@@ -17,6 +17,8 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
      */
     public CreazionePlayerGUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Configurazione della partita");
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -45,9 +47,9 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtNomePlayer = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        rbDifficolta1 = new javax.swing.JRadioButton();
+        rbDifficolta2 = new javax.swing.JRadioButton();
+        rbDifficolta3 = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         btnConfermaNomePlayer = new javax.swing.JButton();
@@ -128,8 +130,9 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         txtNomePlayer.setBackground(new java.awt.Color(51, 51, 51));
         txtNomePlayer.setForeground(new java.awt.Color(255, 255, 255));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(txtNomePlayer, gridBagConstraints);
 
@@ -140,29 +143,47 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         jPanel6.add(jLabel3, gridBagConstraints);
 
-        jRadioButton1.setBackground(new java.awt.Color(102, 0, 0));
-        jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton1.setText("1");
+        rbDifficolta1.setBackground(new java.awt.Color(102, 0, 0));
+        rbDifficolta1.setForeground(new java.awt.Color(0, 0, 0));
+        rbDifficolta1.setText("1");
+        rbDifficolta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rbDifficolta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDifficolta1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
-        jPanel6.add(jRadioButton1, gridBagConstraints);
+        jPanel6.add(rbDifficolta1, gridBagConstraints);
 
-        jRadioButton2.setBackground(new java.awt.Color(102, 0, 0));
-        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton2.setText("2");
+        rbDifficolta2.setBackground(new java.awt.Color(102, 0, 0));
+        rbDifficolta2.setForeground(new java.awt.Color(0, 0, 0));
+        rbDifficolta2.setText("2");
+        rbDifficolta2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rbDifficolta2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDifficolta2ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
-        jPanel6.add(jRadioButton2, gridBagConstraints);
+        jPanel6.add(rbDifficolta2, gridBagConstraints);
 
-        jRadioButton3.setBackground(new java.awt.Color(102, 0, 0));
-        jRadioButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton3.setText("3");
+        rbDifficolta3.setBackground(new java.awt.Color(102, 0, 0));
+        rbDifficolta3.setForeground(new java.awt.Color(0, 0, 0));
+        rbDifficolta3.setText("3");
+        rbDifficolta3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rbDifficolta3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDifficolta3ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
-        jPanel6.add(jRadioButton3, gridBagConstraints);
+        jPanel6.add(rbDifficolta3, gridBagConstraints);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Numero mele");
@@ -183,6 +204,11 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
 
         btnConfermaNomePlayer.setText("Conferma");
         btnConfermaNomePlayer.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        btnConfermaNomePlayer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfermaNomePlayerActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -192,6 +218,40 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rbDifficolta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDifficolta1ActionPerformed
+        if (rbDifficolta2.isSelected()) {
+            rbDifficolta2.setSelected(false);
+        }
+        if (rbDifficolta3.isSelected()) {
+            rbDifficolta3.setSelected(false);
+        }
+    }//GEN-LAST:event_rbDifficolta1ActionPerformed
+
+    private void rbDifficolta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDifficolta2ActionPerformed
+        if (rbDifficolta1.isSelected()) {
+            rbDifficolta1.setSelected(false);
+        }
+        if (rbDifficolta3.isSelected()) {
+            rbDifficolta3.setSelected(false);
+
+        }
+    }//GEN-LAST:event_rbDifficolta2ActionPerformed
+
+    private void rbDifficolta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDifficolta3ActionPerformed
+        if (rbDifficolta2.isSelected()) {
+            rbDifficolta2.setSelected(false);
+
+        }
+        if (rbDifficolta1.isSelected()) {
+            rbDifficolta1.setSelected(false);
+        }
+    }//GEN-LAST:event_rbDifficolta3ActionPerformed
+
+    private void btnConfermaNomePlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfermaNomePlayerActionPerformed
+        p = new Player(txtNomePlayer.getText());
+        
+    }//GEN-LAST:event_btnConfermaNomePlayerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +278,7 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new CreazionePlayerGUI().setVisible(true));
     }
 
+    public Player p;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfermaNomePlayer;
     private javax.swing.JButton jButton1;
@@ -232,13 +293,13 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JRadioButton rbDifficolta1;
+    private javax.swing.JRadioButton rbDifficolta2;
+    private javax.swing.JRadioButton rbDifficolta3;
     private javax.swing.JTextField txtNomePlayer;
     // End of variables declaration//GEN-END:variables
 }
