@@ -21,7 +21,7 @@ public class MuoviPlayer implements Runnable {
     private Player player;
     private Labirinto lab;
     private DefaultTableModel model;
-    private JButton btnMuovi;
+    private GameGUI gui;
     private volatile boolean[] gameOver;
 
     /**
@@ -30,15 +30,15 @@ public class MuoviPlayer implements Runnable {
      * @param player player
      * @param lab labirinto
      * @param model tabella
-     * @param btnMuovi bottone che avvia l'esecuzione
-     * @param gameOver variabile che è "in sintonia" con l'altro thread per capire quando fermare i thread
+     * @param gameOver variabile che è "in sintonia" con l'altro thread per
+     * capire quando fermare i thread
      */
-    public MuoviPlayer(Player player, Labirinto lab, DefaultTableModel model, JButton btnMuovi, boolean[] gameOver) {
+    public MuoviPlayer(Player player, Labirinto lab, DefaultTableModel model, boolean[] gameOver, GameGUI gui) {
         this.player = player;
         this.lab = lab;
         this.model = model;
-        this.btnMuovi = btnMuovi;
         this.gameOver = gameOver;
+        this.gui = gui;
 
     }
 
@@ -57,22 +57,26 @@ public class MuoviPlayer implements Runnable {
 
                 player.muovi(lab);
 
-                if (gameOver[0]) return;
+                if (gameOver[0]) {
+                    return;
+                }
                 SwingUtilities.invokeLater(() -> {
                     model.setValueAt(4, oldX, oldY);
                     model.setValueAt(3, player.getX(), player.getY());
+                    gui.setLblPunti(String.valueOf(player.getPunti()));
                 });
 
                 try {
                     Thread.sleep(player.getVelocita());
-                    if (gameOver[0]) return;
+                    if (gameOver[0]) {
+                        return;
+                    }
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     return;
                 }
             }
 
-            SwingUtilities.invokeLater(() -> btnMuovi.setEnabled(false));
         }
     }
 }

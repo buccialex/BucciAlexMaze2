@@ -17,117 +17,147 @@ import javax.swing.table.DefaultTableModel;
  * @author bucci.alex
  */
 public class GameGUI extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GameGUI.class.getName());
 
     /**
      * Creates new form GameGUI
      */
-    public GameGUI() {
-        // configurazione form
+    public GameGUI(String nomePlayer, int difficolta, int nMele) {
         this.setLocationRelativeTo(null);
         initComponents();
         this.setTitle("Gioco in corso");
-        
-        
+        lblPunti.setText("0");
 
-// popolazione tabella
+        // usa i dati ricevuti
+        lblNomePlayer.setText(nomePlayer);
+        lblMele.setText("Mele: " + nMele);
 
-        preparaTabella();
-       
+        // puoi usare difficolta per regolare la velocità del mostro, ecc.
+        this.difficolta = difficolta;
+        this.nMele = nMele;
+
+        preparaTabella(nomePlayer, nMele);
+        gioco();
+
     }
 
     public void setLblMele(String testo) {
         this.lblMele.setText(testo);
     }
-    
-    
-    public void preparaTabella(){
-        lab = new Labirinto();
+
+    public void preparaTabella(String nomePlayer, int nMele) {
+        lab = new Labirinto(nMele);
         int[][] matriceInteri = lab.getMappa();
-        player = new Player("Franco"); 
+        player = new Player(nomePlayer);
         mostro = new Mostro("Mostro");
         mostro.setX(lab.getxEntrata());
         mostro.setY(lab.getyEntrata());
 
         player.setX(lab.getxEntrata());
         player.setY(lab.getyEntrata());
-        
+
         int righe = matriceInteri.length;
         int colonne = matriceInteri[0].length;
-        
+
         Integer[][] dati = new Integer[righe][colonne];
         String[] intestazioni = new String[colonne];
-        
-        
+
         for (int i = 0; i < righe; i++) {
             for (int j = 0; j < colonne; j++) {
                 dati[i][j] = matriceInteri[i][j];
                 intestazioni[j] = ""; // titolo vuoto
             }
         }
-        
-        
+
         DefaultTableModel model = new DefaultTableModel(dati, intestazioni) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; 
+                return false;
             }
         };
         tabella.setModel(model);
-        
-        
+
         tabella.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, 
+            public Component getTableCellRendererComponent(JTable table, Object value,
                     boolean isSelected, boolean hasFocus, int row, int column) {
-                
+
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                
-                setText(""); 
-                
+
+                setText("");
+
                 if (value instanceof Integer) {
                     int val = (Integer) value;
                     switch (val) {
                         case 1: // MURI
-                            c.setBackground(Color.RED); 
+                            c.setBackground(Color.RED);
                             break;
-                        
+
                         case 3: // PLAYER
                             c.setBackground(Color.WHITE);
                             break;
-                        
+
                         case 5: // MOSTRO
                             c.setBackground(Color.ORANGE);
                             break;
                         case 8: // MELE
                             c.setBackground(Color.GREEN);
-                                break;
-                        default:
-                            c.setBackground(Color.BLACK); 
                             break;
-                        
+                        default:
+                            c.setBackground(Color.BLACK);
+                            break;
+
                     }
                 }
                 return c;
             }
         });
-        
+
         // 4. RENDIAMO LE CELLE QUADRATE (Fondamentale per l'aspetto)
         int size = 20; // Grandezza in pixel
         tabella.setRowHeight(size);
-        
+
         for (int i = 0; i < colonne; i++) {
             tabella.getColumnModel().getColumn(i).setPreferredWidth(size);
             tabella.getColumnModel().getColumn(i).setMinWidth(size);
             tabella.getColumnModel().getColumn(i).setMaxWidth(size);
         }
-        
+
         // Rimuoviamo la griglia grigia di default
         tabella.setShowGrid(false);
         tabella.setIntercellSpacing(new Dimension(0, 0));
     }
-    
+
+    public void gioco() {
+        if (lab != null && player != null) {
+            DefaultTableModel model = (DefaultTableModel) tabella.getModel();
+
+            // più alta la difficoltà, più breve il ritardo = mostro più veloce
+            int ritardoMostro = switch (difficolta) {
+                case 1 ->
+                    150;  // lento
+                case 2 ->
+                    80;   // normale
+                case 3 ->
+                    30;   // veloce
+                default ->
+                    100;
+            };
+
+            MuoviPlayer runner = new MuoviPlayer(player, lab, model, gameOver, this);
+            Thread thread = new Thread(runner);
+            thread.start();
+
+            MuoviMostro runnerMostro = new MuoviMostro(mostro, player, lab, model, 2000, gameOver, ritardoMostro);
+            Thread threadMostro = new Thread(runnerMostro);
+            threadMostro.start();
+        }
+    }
+
+    public void setLblPunti(String testo) {
+        this.lblPunti.setText(testo);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -148,6 +178,8 @@ public class GameGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblMele = new javax.swing.JLabel();
         lblNomePlayer = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblPunti = new javax.swing.JLabel();
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -189,6 +221,7 @@ public class GameGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabella.setEnabled(false);
         jScrollPane1.setViewportView(tabella);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -225,11 +258,27 @@ public class GameGUI extends javax.swing.JFrame {
         lblMele.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMele.setText("placeholder messaggio mele");
         jPanel2.add(lblMele);
-        lblMele.setBounds(670, 40, 210, 50);
+        lblMele.setBounds(630, 0, 260, 50);
 
+        lblNomePlayer.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        lblNomePlayer.setForeground(new java.awt.Color(255, 255, 255));
+        lblNomePlayer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNomePlayer.setText("PLACEHOLDERNOME");
         jPanel2.add(lblNomePlayer);
-        lblNomePlayer.setBounds(680, 300, 190, 16);
+        lblNomePlayer.setBounds(650, 270, 240, 70);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Punteggio:");
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(650, 200, 90, 40);
+
+        lblPunti.setFont(new java.awt.Font("Segoe UI Light", 2, 18)); // NOI18N
+        lblPunti.setForeground(new java.awt.Color(255, 255, 255));
+        lblPunti.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPunti.setText("PUNTI");
+        jPanel2.add(lblPunti);
+        lblPunti.setBounds(740, 200, 120, 40);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -258,16 +307,18 @@ public class GameGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new GameGUI().setVisible(true));
     }
 
-    private boolean[] gameOver = {false}; 
+    private boolean[] gameOver = {false};
     private Labirinto lab;
-    private Player player;  
+    private Player player;
     private Mostro mostro;
+    private int difficolta;
+    private int nMele;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -275,6 +326,7 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMele;
     private javax.swing.JLabel lblNomePlayer;
+    private javax.swing.JLabel lblPunti;
     private javax.swing.JTable tabella;
     // End of variables declaration//GEN-END:variables
 }

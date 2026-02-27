@@ -21,12 +21,14 @@ public class Labirinto {
     private int xEntrata;
     private int yEntrata;
     private int[][] mappa;
+    private int nMele;
 
     /**
      * costruttore di labirinto
      */
-    public Labirinto(){
+    public Labirinto(int maxMele){
         this.misure = 30;
+        nMele = maxMele;
         // costruisco il labirinto nel costruttore
         this.mappa = this.popolaLabirinto();
     }
@@ -38,7 +40,7 @@ public class Labirinto {
     
     private int[][] popolaLabirinto(){
         Random rnd = new Random();
-        int nMele = 0;
+        
         int n = misure;
         if (n % 2 == 0) n++;
         
@@ -83,15 +85,16 @@ public class Labirinto {
         // Ricostruisci e marca il percorso con 2
         if (visitato[end_x][end_y]) {
             int x = end_x, y = end_y;
+            int melePoste = 0;
             while (!(x == start_x && y == start_y)) {
                 this.mappa[x][y] = 2;
                 int temp_x = x;
                 int temp_y = y;
                 x = parent_x[temp_x][y];
                 y = parent_y[temp_x][y];
-                if (nMele < 4 && rnd.nextInt(100) > 90) {
+                if (melePoste < this.nMele && rnd.nextInt(100) > 90) {
                     this.mappa[temp_x][temp_y] = 8; // sulla cella già processata
-                    nMele++;
+                    melePoste++;
                     
                 } else {
                     this.mappa[temp_x][temp_y] = 2;
@@ -234,6 +237,10 @@ public class Labirinto {
      */
     public int[][] getMappa() {
         return mappa;
+    }
+
+    public int getnMele() {
+        return nMele;
     }
     
     

@@ -34,10 +34,12 @@ public class TitleGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnGioca = new javax.swing.JButton();
         btnConfiguraPartita = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(199, 126));
+        setPreferredSize(new java.awt.Dimension(199, 126));
+        setSize(new java.awt.Dimension(199, 126));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -50,17 +52,8 @@ public class TitleGUI extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
-        btnGioca.setBackground(new java.awt.Color(255, 255, 255));
-        btnGioca.setText("Gioca");
-        btnGioca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGiocaActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnGioca);
-
         btnConfiguraPartita.setBackground(new java.awt.Color(255, 255, 255));
-        btnConfiguraPartita.setText("Configura partita");
+        btnConfiguraPartita.setText("Gioca");
         btnConfiguraPartita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfiguraPartitaActionPerformed(evt);
@@ -79,13 +72,6 @@ public class TitleGUI extends javax.swing.JFrame {
         CreazionePlayerGUI f = new CreazionePlayerGUI();
         f.setVisible(true);
     }//GEN-LAST:event_btnConfiguraPartitaActionPerformed
-
-    private void btnGiocaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiocaActionPerformed
-        GameGUI g = new GameGUI();
-        g.setVisible(true);
-        this.setVisible(false);
-        
-    }//GEN-LAST:event_btnGiocaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,7 +100,6 @@ public class TitleGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfiguraPartita;
-    private javax.swing.JButton btnGioca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

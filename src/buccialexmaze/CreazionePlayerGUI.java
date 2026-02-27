@@ -173,7 +173,7 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
 
         rbDifficolta3.setBackground(new java.awt.Color(102, 0, 0));
         rbDifficolta3.setForeground(new java.awt.Color(0, 0, 0));
-        rbDifficolta3.setText("3");
+        rbDifficolta3.setText("Impossibile");
         rbDifficolta3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rbDifficolta3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,8 +249,33 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rbDifficolta3ActionPerformed
 
     private void btnConfermaNomePlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfermaNomePlayerActionPerformed
-        p = new Player(txtNomePlayer.getText());
-        
+        String nome = txtNomePlayer.getText().trim();
+        String nMeleStr = jTextField1.getText().trim();
+
+        // validazione base
+        if (nome.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Inserisci un nome!");
+            return;
+        }
+
+        int difficolta = 1;
+        if (rbDifficolta2.isSelected()) {
+            difficolta = 2;
+        } else if (rbDifficolta3.isSelected()) {
+            difficolta = 3;
+        }
+
+        int nMele = 0;
+        try {
+            nMele = Integer.parseInt(nMeleStr);
+        } catch (NumberFormatException e) {
+            // usa default 0
+        }
+
+        // apri il gioco passando i dati
+        GameGUI game = new GameGUI(nome, difficolta, nMele);
+        game.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnConfermaNomePlayerActionPerformed
 
     /**
