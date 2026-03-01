@@ -9,17 +9,18 @@ package buccialexmaze;
  * @author bucci.alex
  */
 public class TitleGUI extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TitleGUI.class.getName());
 
     /**
      * Creates new form TitleGUI
      */
     public TitleGUI() {
+        // configurazione form
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Maze - Bucci Alex");
-        
+
     }
 
     /**
@@ -52,8 +53,12 @@ public class TitleGUI extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
-        btnConfiguraPartita.setBackground(new java.awt.Color(255, 255, 255));
+        btnConfiguraPartita.setBackground(new java.awt.Color(0, 0, 0));
+        btnConfiguraPartita.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
+        btnConfiguraPartita.setForeground(new java.awt.Color(255, 255, 255));
         btnConfiguraPartita.setText("Gioca");
+        btnConfiguraPartita.setToolTipText("");
+        btnConfiguraPartita.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 0, 0)));
         btnConfiguraPartita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfiguraPartitaActionPerformed(evt);

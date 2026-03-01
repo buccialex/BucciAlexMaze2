@@ -11,8 +11,7 @@ package buccialexmaze;
 public class Player extends OggettoMobile {
 
     /**
-     * attributi: velocita = valore della velocità del player (neccessaria per
-     * modificarla quando prende un oggetto)
+     * attributi: velocita = velocità del player punti = punteggio
      */
     private int velocita = 120;
     private int punti;
@@ -49,6 +48,13 @@ public class Player extends OggettoMobile {
             int nextX = x + dx[i];
             int nextY = y + dy[i];
 
+            if (nextX == n - 1 && maze[nextX][nextY] == 0) {
+                this.aggiungiPunti(100);
+                x = nextX;
+                y = nextY;
+                return;
+            }
+
             if (nextX >= 0 && nextX < n && nextY >= 0 && nextY < n
                     && (maze[nextX][nextY] == 2 || maze[nextX][nextY] == 8)) {
 
@@ -56,7 +62,7 @@ public class Player extends OggettoMobile {
                     Mela m = new Mela();
                     int bonus = m.getBonus();
                     this.velocita = Math.max(20, this.velocita + bonus);
-                    this.aggiungiPunti(200); // ← mela = +200
+                    this.aggiungiPunti(250); // ← mela = +250
                 } else {
                     this.aggiungiPunti(100); // ← movimento normale = +100
                 }
@@ -67,18 +73,13 @@ public class Player extends OggettoMobile {
             }
         }
 
-        for (int i = 0; i < 4; i++) {
-            int nextX = x + dx[i];
-            int nextY = y + dy[i];
-            if (nextX == n - 1 && maze[nextX][nextY] == 0) {
-                this.aggiungiPunti(100);
-                x = nextX;
-                y = nextY;
-                return;
-            }
-        }
     }
 
+    /**
+     * metodo per aggiungere i punti
+     *
+     * @param quantita numero dei punti
+     */
     public void aggiungiPunti(int quantita) {
         this.punti += quantita;
     }
@@ -101,6 +102,11 @@ public class Player extends OggettoMobile {
         this.velocita = velocita;
     }
 
+    /**
+     * getter di punti
+     *
+     * @return punteggio
+     */
     public int getPunti() {
         return punti;
     }

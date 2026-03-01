@@ -17,5 +17,5 @@ public class BucciAlexMaze {
         TitleGUI f = new TitleGUI();
         f.setVisible(true);
     }
-    
+
 }

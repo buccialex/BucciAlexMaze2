@@ -19,13 +19,13 @@ public class MuoviMostro implements Runnable {
      * possa vedere l'aggiornamento della tabella) ritardoIniziale = valore di
      * ritardo di partenza rispetto al player
      */
-    private Mostro mostro;
-    private Player player;
-    private Labirinto lab;
-    private DefaultTableModel model;
-    private int ritardoIniziale;
+    private final Mostro mostro;
+    private final Player player;
+    private final Labirinto lab;
+    private final DefaultTableModel model;
+    private final int ritardoIniziale;
     private volatile boolean[] gameOver;
-    private int ritardo;
+    private final int ritardo;
 
     /**
      * costruttore
@@ -35,6 +35,8 @@ public class MuoviMostro implements Runnable {
      * @param lab labirinto
      * @param model tabella
      * @param ritardoIniziale ritardo di partenza
+     * @param gameOver se il mostro ha preso il player
+     * @param ritardo valore di ritardo per la partenza
      */
     public MuoviMostro(Mostro mostro, Player player, Labirinto lab, DefaultTableModel model, int ritardoIniziale, boolean[] gameOver, int ritardo) {
         this.mostro = mostro;
@@ -59,9 +61,9 @@ public class MuoviMostro implements Runnable {
         }
 
         int n = lab.getMappa().length;
-        int[] prev = {-1, -1};  // ← stato locale al thread, non all'oggetto
+        int[] prev = {-1, -1};
 
-        while (mostro.getX() != n - 1) {
+        while (mostro.getX() != n - 1 && !gameOver[0]) {
             int oldX = mostro.getX();
             int oldY = mostro.getY();
 

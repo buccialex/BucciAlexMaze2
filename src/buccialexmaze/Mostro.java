@@ -3,34 +3,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package buccialexmaze;
+
 import java.util.*;
+
 /**
  *
  * @author Bux
  */
-public class Mostro extends OggettoMobile{
-    
+public class Mostro extends OggettoMobile {
+
     /**
-     * attributi:
-     * deviazioneProb: la probabilità che il mostro si inizi a muovere randomicamente
+     * attributi: deviazioneProb: la probabilità che il mostro si inizi a
+     * muovere randomicamente
      */
     private final int deviazioneProb = 30;
-    
+
     /**
      * costruttore di mostro
+     *
      * @param nome nome del mostro
      */
-    public Mostro(String nome){
+    public Mostro(String nome) {
         super(nome);
     }
-    
-   
-    
-   
+
     /**
      * metodo muovi del mostro
+     *
      * @param labirinto labirinto
-     * @param player giocatore (neccessario per far si che il mostro segua il player)
+     * @param player giocatore (neccessario per far si che il mostro segua il
+     * player)
      * @param prev coordinate di provenienza del mostro
      */
     public void muovi(Labirinto labirinto, Player player, int[] prev) {
@@ -62,18 +64,18 @@ public class Mostro extends OggettoMobile{
     }
 
     /**
-     * metodo per muoversi verso il player
+     *
      * @param maze labirinto
-     * @param n misura del labirinto
-     * @param dx possibili x dove muoversi
-     * @param dy possibili y dove muoversi
-     * @param player giocatore
-     * @param prev coordinate della cella di provenienza
-     * @return  se il mostro si può muovere verso il player
+     * @param cx coordinata x
+     * @param cy coordinata y
+     * @param endX coordinata x della fine
+     * @param endY coordinata y della fine
+     * @param visitato se la cella xy è stata visistata
+     * @param percorso lista delle celle che compongono il percorso
+     * @return
      */
-    
     private boolean cercaPercorso(int[][] maze, int cx, int cy, int endX, int endY,
-                                   boolean[][] visitato, List<int[]> percorso) {
+            boolean[][] visitato, List<int[]> percorso) {
         int n = maze.length;
 
         // caso base: obiettivo raggiunto
@@ -104,9 +106,10 @@ public class Mostro extends OggettoMobile{
         percorso.remove(percorso.size() - 1);
         return false;
     }
-    
+
     /**
      * metodo per muovere il mostro in modo casuale
+     *
      * @param maze labirinto
      * @param n misura del labirinto
      * @param dx possibili x
@@ -139,6 +142,5 @@ public class Mostro extends OggettoMobile{
         prev[0] = -1;
         prev[1] = -1;
     }
-    
-    
+
 }

@@ -17,6 +17,7 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
      */
     public CreazionePlayerGUI() {
         initComponents();
+        // impostazione della gui
         this.setLocationRelativeTo(null);
         this.setTitle("Configurazione della partita");
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -111,6 +112,9 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(733, 419));
+        setPreferredSize(new java.awt.Dimension(733, 419));
+        setSize(new java.awt.Dimension(733, 419));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -202,8 +206,11 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
 
         jPanel2.add(jPanel6, new java.awt.GridBagConstraints());
 
+        btnConfermaNomePlayer.setBackground(new java.awt.Color(0, 0, 0));
+        btnConfermaNomePlayer.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
+        btnConfermaNomePlayer.setForeground(new java.awt.Color(255, 255, 255));
         btnConfermaNomePlayer.setText("Conferma");
-        btnConfermaNomePlayer.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        btnConfermaNomePlayer.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 0, 0)));
         btnConfermaNomePlayer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfermaNomePlayerActionPerformed(evt);
@@ -219,6 +226,11 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * selettore difficoltà 1
+     *
+     * @param evt evento che avviene quando premo il bottone
+     */
     private void rbDifficolta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDifficolta1ActionPerformed
         if (rbDifficolta2.isSelected()) {
             rbDifficolta2.setSelected(false);
@@ -228,6 +240,11 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rbDifficolta1ActionPerformed
 
+    /**
+     * selettore difficoltà 2
+     *
+     * @param evt evento che avviene quando premo il bottone
+     */
     private void rbDifficolta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDifficolta2ActionPerformed
         if (rbDifficolta1.isSelected()) {
             rbDifficolta1.setSelected(false);
@@ -238,6 +255,11 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rbDifficolta2ActionPerformed
 
+    /**
+     * selettore difficoltà 3
+     *
+     * @param evt evento che avviene quando premo il bottone
+     */
     private void rbDifficolta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDifficolta3ActionPerformed
         if (rbDifficolta2.isSelected()) {
             rbDifficolta2.setSelected(false);
@@ -248,16 +270,22 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rbDifficolta3ActionPerformed
 
+    /**
+     * impostazione del gioco
+     *
+     * @param evt evento di pressione
+     */
     private void btnConfermaNomePlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfermaNomePlayerActionPerformed
-        String nome = txtNomePlayer.getText().trim();
-        String nMeleStr = jTextField1.getText().trim();
+        String nome = txtNomePlayer.getText();
+        String nMeleStr = jTextField1.getText();
 
-        // validazione base
+        // controllo del nome vuoto
         if (nome.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Inserisci un nome!");
             return;
         }
 
+        // difficoltà instanziata subito ad 1 nel caso non venga selezionata
         int difficolta = 1;
         if (rbDifficolta2.isSelected()) {
             difficolta = 2;
@@ -265,16 +293,17 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
             difficolta = 3;
         }
 
+        // mele instanziate a 0 nel caso non venga inserito nessun valore
         int nMele = 0;
         try {
             nMele = Integer.parseInt(nMeleStr);
         } catch (NumberFormatException e) {
-            // usa default 0
+            // usa 0
         }
 
-        // apri il gioco passando i dati
         GameGUI game = new GameGUI(nome, difficolta, nMele);
         game.setVisible(true);
+        // chiude la finestra
         this.dispose();
     }//GEN-LAST:event_btnConfermaNomePlayerActionPerformed
 
@@ -303,6 +332,10 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new CreazionePlayerGUI().setVisible(true));
     }
 
+    /**
+     * attributi: p = player (passato così da poter usare il nome inserito e
+     * public per poterlo mostrare nella lable)
+     */
     public Player p;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfermaNomePlayer;

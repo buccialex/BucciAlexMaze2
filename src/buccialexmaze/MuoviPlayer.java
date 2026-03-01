@@ -18,10 +18,10 @@ public class MuoviPlayer implements Runnable {
      * attributi: player = player lab = labirinto model = tabella btnMuovi =
      * bottone che avvia il movimento
      */
-    private Player player;
-    private Labirinto lab;
-    private DefaultTableModel model;
-    private GameGUI gui;
+    private final Player player;
+    private final Labirinto lab;
+    private final DefaultTableModel model;
+    private final GameGUI gui;
     private volatile boolean[] gameOver;
 
     /**
@@ -32,6 +32,7 @@ public class MuoviPlayer implements Runnable {
      * @param model tabella
      * @param gameOver variabile che è "in sintonia" con l'altro thread per
      * capire quando fermare i thread
+     * @param gui finestra di gioco
      */
     public MuoviPlayer(Player player, Labirinto lab, DefaultTableModel model, boolean[] gameOver, GameGUI gui) {
         this.player = player;
@@ -77,6 +78,23 @@ public class MuoviPlayer implements Runnable {
                 }
             }
 
+        }
+
+        if (!gameOver[0]) {
+            gameOver[0] = true;
+            int punteggio = player.getPunti();
+            String nome = player.getNome();
+            SwingUtilities.invokeLater(() -> {
+                javax.swing.JOptionPane.showMessageDialog(
+                        null,
+                        "Complimenti " + player.getNome() + "! Hai completato il labirinto!\nPunteggio finale: " + punteggio,
+                        "Hai vinto!",
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE
+                );
+                gui.dispose();
+                TitleGUI title = new TitleGUI();
+                title.setVisible(true);
+            });
         }
     }
 }

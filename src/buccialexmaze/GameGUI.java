@@ -24,28 +24,39 @@ public class GameGUI extends javax.swing.JFrame {
      * Creates new form GameGUI
      */
     public GameGUI(String nomePlayer, int difficolta, int nMele) {
+        // impostazione della form
         this.setLocationRelativeTo(null);
         initComponents();
         this.setTitle("Gioco in corso");
         lblPunti.setText("0");
 
-        // usa i dati ricevuti
+        // usa i dati 
         lblNomePlayer.setText(nomePlayer);
         lblMele.setText("Mele: " + nMele);
-
-        // puoi usare difficolta per regolare la velocità del mostro, ecc.
         this.difficolta = difficolta;
         this.nMele = nMele;
 
+        // funzioni che avviano il gioco
         preparaTabella(nomePlayer, nMele);
         gioco();
 
     }
 
-    public void setLblMele(String testo) {
-        this.lblMele.setText(testo);
+    /**
+     * setter della lable che mostra il numero di mele
+     *
+     * @param nMele numero di mele
+     */
+    public void setLblMele(String nMele) {
+        this.lblMele.setText(nMele);
     }
 
+    /**
+     * metodo che prepara la tabella
+     *
+     * @param nomePlayer nome del player
+     * @param nMele numero delle mele
+     */
     public void preparaTabella(String nomePlayer, int nMele) {
         lab = new Labirinto(nMele);
         int[][] matriceInteri = lab.getMappa();
@@ -66,12 +77,14 @@ public class GameGUI extends javax.swing.JFrame {
         for (int i = 0; i < righe; i++) {
             for (int j = 0; j < colonne; j++) {
                 dati[i][j] = matriceInteri[i][j];
-                intestazioni[j] = ""; // titolo vuoto
+                // metti i titoli vuoti
+                intestazioni[j] = "";
             }
         }
 
         DefaultTableModel model = new DefaultTableModel(dati, intestazioni) {
             @Override
+            // disabilita la modifica delle celle
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -84,9 +97,9 @@ public class GameGUI extends javax.swing.JFrame {
                     boolean isSelected, boolean hasFocus, int row, int column) {
 
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
+                // mantieni invisibile il contenuto delle celle
                 setText("");
-
+                // impostazione dei colori in base al contenuto
                 if (value instanceof Integer) {
                     int val = (Integer) value;
                     switch (val) {
@@ -104,7 +117,7 @@ public class GameGUI extends javax.swing.JFrame {
                         case 8: // MELE
                             c.setBackground(Color.GREEN);
                             break;
-                        default:
+                        default: // pavimento
                             c.setBackground(Color.BLACK);
                             break;
 
@@ -114,8 +127,8 @@ public class GameGUI extends javax.swing.JFrame {
             }
         });
 
-        // 4. RENDIAMO LE CELLE QUADRATE (Fondamentale per l'aspetto)
-        int size = 20; // Grandezza in pixel
+        // squadra le celle
+        int size = 20;
         tabella.setRowHeight(size);
 
         for (int i = 0; i < colonne; i++) {
@@ -124,37 +137,47 @@ public class GameGUI extends javax.swing.JFrame {
             tabella.getColumnModel().getColumn(i).setMaxWidth(size);
         }
 
-        // Rimuoviamo la griglia grigia di default
+        // nascondi la griglia
         tabella.setShowGrid(false);
         tabella.setIntercellSpacing(new Dimension(0, 0));
     }
 
+    /**
+     * metodo che esegue il gioco
+     */
     public void gioco() {
         if (lab != null && player != null) {
             DefaultTableModel model = (DefaultTableModel) tabella.getModel();
 
-            // più alta la difficoltà, più breve il ritardo = mostro più veloce
+            // regola la velocità del mostro in base alla difficoltà
             int ritardoMostro = switch (difficolta) {
                 case 1 ->
-                    150;  // lento
+                    150;
                 case 2 ->
-                    80;   // normale
+                    80;
                 case 3 ->
-                    30;   // veloce
+                    30;
                 default ->
                     100;
             };
 
+            // assegnazione del runner al thread per il player
             MuoviPlayer runner = new MuoviPlayer(player, lab, model, gameOver, this);
             Thread thread = new Thread(runner);
             thread.start();
 
+            // assegnazione del runner al thread per il mostro
             MuoviMostro runnerMostro = new MuoviMostro(mostro, player, lab, model, 2000, gameOver, ritardoMostro);
             Thread threadMostro = new Thread(runnerMostro);
             threadMostro.start();
         }
     }
 
+    /**
+     * setter lable punti
+     *
+     * @param testo valore dei punti
+     */
     public void setLblPunti(String testo) {
         this.lblPunti.setText(testo);
     }
@@ -174,12 +197,11 @@ public class GameGUI extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabella = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         lblMele = new javax.swing.JLabel();
         lblNomePlayer = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblPunti = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -240,18 +262,6 @@ public class GameGUI extends javax.swing.JFrame {
         jPanel2.add(jPanel3);
         jPanel3.setBounds(0, 0, 640, 650);
 
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel4.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/PlayerGIF.gif"))); // NOI18N
-        jPanel4.add(jLabel1, java.awt.BorderLayout.CENTER);
-
-        jPanel2.add(jPanel4);
-        jPanel4.setBounds(660, 340, 230, 250);
-
         lblMele.setBackground(new java.awt.Color(255, 255, 255));
         lblMele.setFont(new java.awt.Font("Siemens Slab SC", 1, 18)); // NOI18N
         lblMele.setForeground(new java.awt.Color(255, 255, 255));
@@ -271,14 +281,22 @@ public class GameGUI extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Punteggio:");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(650, 200, 90, 40);
+        jLabel3.setBounds(660, 240, 90, 40);
 
         lblPunti.setFont(new java.awt.Font("Segoe UI Light", 2, 18)); // NOI18N
         lblPunti.setForeground(new java.awt.Color(255, 255, 255));
         lblPunti.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPunti.setText("PUNTI");
         jPanel2.add(lblPunti);
-        lblPunti.setBounds(740, 200, 120, 40);
+        lblPunti.setBounds(750, 240, 120, 40);
+
+        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/PlayerGIF.gif"))); // NOI18N
+        jLabel1.setToolTipText("");
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(650, 330, 230, 250);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -309,6 +327,11 @@ public class GameGUI extends javax.swing.JFrame {
         /* Create and display the form */
     }
 
+    /**
+     * attributi: gameover = se il mostro ha preso il player lab = labirinto
+     * player = player mostro = mostro difficoltà = difficoltà nMele = numero
+     * delle mele
+     */
     private boolean[] gameOver = {false};
     private Labirinto lab;
     private Player player;
@@ -322,7 +345,6 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMele;
     private javax.swing.JLabel lblNomePlayer;

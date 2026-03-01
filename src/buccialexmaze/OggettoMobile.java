@@ -9,26 +9,26 @@ package buccialexmaze;
  * @author Bux
  */
 public abstract class OggettoMobile {
+
     /**
-     * attributi:
-     * nome = nome dell'oggetto
-     * x = coordinata x
-     * y = coordinata y
+     * attributi: nome = nome dell'oggetto x = coordinata x y = coordinata y
      */
     protected String nome;
     protected int x;
     protected int y;
+
     /**
      * costruttore di oggetti mobili
+     *
      * @param nome nome dell'oggetto mobile
      */
-    public OggettoMobile(String nome){
+    public OggettoMobile(String nome) {
         this.nome = nome;
     }
-    
 
     /**
      * getter nome
+     *
      * @return nome
      */
     public String getNome() {
@@ -37,7 +37,8 @@ public abstract class OggettoMobile {
 
     /**
      * setter nome
-     * @param nome nuovo nome 
+     *
+     * @param nome nuovo nome
      */
     public void setNome(String nome) {
         this.nome = nome;
@@ -45,6 +46,7 @@ public abstract class OggettoMobile {
 
     /**
      * getter x
+     *
      * @return x
      */
     public int getX() {
@@ -53,6 +55,7 @@ public abstract class OggettoMobile {
 
     /**
      * setter x
+     *
      * @param x nuova x
      */
     public void setX(int x) {
@@ -61,6 +64,7 @@ public abstract class OggettoMobile {
 
     /**
      * getter y
+     *
      * @return y
      */
     public int getY() {
@@ -69,11 +73,11 @@ public abstract class OggettoMobile {
 
     /**
      * setter y
-     * @param y nuova y 
+     *
+     * @param y nuova y
      */
     public void setY(int y) {
         this.y = y;
     }
-    
-    
+
 }
