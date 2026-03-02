@@ -34,7 +34,7 @@ public class GameGUI extends javax.swing.JFrame {
 
         // usa i dati 
         lblNomePlayer.setText(nomePlayer);
-        lblMele.setText("Mele: " + nMele);
+        lblMele.setText("Massimo Mele: " + nMele);
         this.difficolta = difficolta;
         this.nMele = nMele;
 
