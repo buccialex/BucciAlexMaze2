@@ -7,7 +7,6 @@ package buccialexmaze;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +21,9 @@ public class GameGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form GameGUI
+     * @param nomePlayer nome del giocatore
+     * @param difficolta valore della difficoltà
+     * @param nMele numero massimo delle mele
      */
     public GameGUI(String nomePlayer, int difficolta, int nMele) {
         // impostazione della form
@@ -328,16 +330,20 @@ public class GameGUI extends javax.swing.JFrame {
     }
 
     /**
-     * attributi: gameover = se il mostro ha preso il player lab = labirinto
-     * player = player mostro = mostro difficoltà = difficoltà nMele = numero
-     * delle mele
+     * attributi: 
+     * gameover = se il mostro ha preso il player 
+     * lab = labirinto
+     * player = player 
+     * mostro = mostro 
+     * difficoltà = difficoltà 
+     * nMele = numero delle mele
      */
-    private boolean[] gameOver = {false};
+    private final boolean[] gameOver = {false};
     private Labirinto lab;
     private Player player;
     private Mostro mostro;
-    private int difficolta;
-    private int nMele;
+    private final int difficolta;
+    private final int nMele;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

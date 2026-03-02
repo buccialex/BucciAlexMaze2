@@ -333,9 +333,7 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new CreazionePlayerGUI().setVisible(true));
     }
 
-    /**
-     * attributi: p = player 
-     */
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfermaNomePlayer;
