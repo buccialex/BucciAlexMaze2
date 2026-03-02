@@ -334,10 +334,9 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
     }
 
     /**
-     * attributi: p = player (passato così da poter usare il nome inserito e
-     * public per poterlo mostrare nella lable)
+     * attributi: p = player 
      */
-    public Player p;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfermaNomePlayer;
     private javax.swing.JButton jButton1;
