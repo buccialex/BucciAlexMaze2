@@ -15,6 +15,8 @@ public class BucciAlexMaze {
      */
     public static void main(String[] args) {
         TitleGUI f = new TitleGUI();
+        f.setSize(227, 140);
+        f.setResizable(false);
         f.setVisible(true);
     }
 

@@ -150,7 +150,7 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         rbDifficolta1.setBackground(new java.awt.Color(102, 0, 0));
         rbDifficolta1.setForeground(new java.awt.Color(0, 0, 0));
         rbDifficolta1.setText("1");
-        rbDifficolta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rbDifficolta1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         rbDifficolta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbDifficolta1ActionPerformed(evt);
@@ -164,7 +164,7 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         rbDifficolta2.setBackground(new java.awt.Color(102, 0, 0));
         rbDifficolta2.setForeground(new java.awt.Color(0, 0, 0));
         rbDifficolta2.setText("2");
-        rbDifficolta2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rbDifficolta2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         rbDifficolta2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbDifficolta2ActionPerformed(evt);
@@ -178,7 +178,7 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         rbDifficolta3.setBackground(new java.awt.Color(102, 0, 0));
         rbDifficolta3.setForeground(new java.awt.Color(0, 0, 0));
         rbDifficolta3.setText("Impossibile");
-        rbDifficolta3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rbDifficolta3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         rbDifficolta3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbDifficolta3ActionPerformed(evt);
@@ -190,7 +190,7 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         jPanel6.add(rbDifficolta3, gridBagConstraints);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Numero mele");
+        jLabel5.setText("Numero massimo mele");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -211,6 +211,7 @@ public class CreazionePlayerGUI extends javax.swing.JFrame {
         btnConfermaNomePlayer.setForeground(new java.awt.Color(255, 255, 255));
         btnConfermaNomePlayer.setText("Conferma");
         btnConfermaNomePlayer.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 0, 0)));
+        btnConfermaNomePlayer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConfermaNomePlayer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfermaNomePlayerActionPerformed(evt);

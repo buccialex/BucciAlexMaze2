@@ -94,6 +94,8 @@ public class MuoviPlayer implements Runnable {
                 gui.dispose();
                 TitleGUI title = new TitleGUI();
                 title.setVisible(true);
+                title.setSize(227, 140);
+                title.setResizable(false);
             });
         }
     }

@@ -38,9 +38,9 @@ public class TitleGUI extends javax.swing.JFrame {
         btnConfiguraPartita = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(199, 126));
-        setPreferredSize(new java.awt.Dimension(199, 126));
-        setSize(new java.awt.Dimension(199, 126));
+        setMinimumSize(new java.awt.Dimension(227, 125));
+        setPreferredSize(new java.awt.Dimension(227, 125));
+        setSize(new java.awt.Dimension(227, 125));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -57,8 +57,9 @@ public class TitleGUI extends javax.swing.JFrame {
         btnConfiguraPartita.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         btnConfiguraPartita.setForeground(new java.awt.Color(255, 255, 255));
         btnConfiguraPartita.setText("Gioca");
-        btnConfiguraPartita.setToolTipText("");
+        btnConfiguraPartita.setToolTipText("Inizia il gioco");
         btnConfiguraPartita.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 0, 0)));
+        btnConfiguraPartita.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConfiguraPartita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfiguraPartitaActionPerformed(evt);
@@ -76,6 +77,7 @@ public class TitleGUI extends javax.swing.JFrame {
     private void btnConfiguraPartitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguraPartitaActionPerformed
         CreazionePlayerGUI f = new CreazionePlayerGUI();
         f.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnConfiguraPartitaActionPerformed
 
     /**
